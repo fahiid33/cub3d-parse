@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/21 20:10:10 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/21 23:16:14 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ int	check_colors(char *str, int i)
 			i++;
 	}
 	if (str && str[i])
-		printf("atoi = %d\n", atoi(str + i));
 		if (atoi(str + i) >= 0 && atoi(str + i) <= 255)
 		{
 			while (str[i] && isdigit(str[i]))
