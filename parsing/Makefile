@@ -6,7 +6,7 @@
 #    By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/21 01:18:51 by fstitou           #+#    #+#              #
-#    Updated: 2022/10/21 23:12:44 by fstitou          ###   ########.fr        #
+#    Updated: 2022/10/22 05:31:27 by fstitou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror
 SANITIZE = -fsanitize=address
 		
-SRC = *.c GNL/*.c 
+SRC = *.c GNL/*.c tools/*.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/21 19:37:13 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/22 05:49:34 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,25 @@ typedef struct s_parse
 
 // tools
 
-int	is_map(char *s);
-int	is_blank(char c);
-int	is_invalid(char c);
 t_parse	*init_vals(t_parse *p);
-int check_file(char *file);
+int		is_map(char *s);
+int		is_blank(char c);
+int		is_invalid(char c);
+int 	check_file(char *file);
 void	errors(int err);
+char	**ft_split(char const *s, char c);
+int		only_space(char *str);
+void	free_tab(char **tab);
+int		ft_atoi(const char *str);
 
+
+// parse
+
+t_parse	*parse_identifiers(char **vals, t_parse *p);
+t_parse *check_identifiers(char **tab, t_parse *p);
+char	**fill_identifiers(char **to_fill, char **tab, t_parse *p);
+char	**fill_map(char **tab);
+int		check_colors(char *str, int i);
+int		check_textures(char *str, int i);
 
 #endif

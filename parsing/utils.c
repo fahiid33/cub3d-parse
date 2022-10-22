@@ -6,34 +6,11 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:07:26 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/21 19:33:59 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/22 05:39:27 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-void	errors(int err)
-{
-	if (err == 1)
-	{
-		write(2, "Error in file format\n", 21);
-		exit(1);
-	}
-}
-
-int check_file(char *file)
-{
-    char *str;
-    int fd;
-
-    fd = open(file, O_RDONLY);
-    if (fd == -1)
-        return (0);
-    str = strrchr(file, '.');
-    if (str == NULL || strcmp(str, ".cub") != 0)
-        return (0);
-    return (fd);
-}
 
 t_parse	*init_vals(t_parse *p)
 {
@@ -51,20 +28,20 @@ t_parse	*init_vals(t_parse *p)
 	return (p);
 }
 
-int	is_invalid(char c)
+int check_file(char *file)
 {
-	if (c != '\0' && c != '1' && c != '2' && c != '0'
-		&& c != ' ')
-		return (1);
-	return (0);
+    char *str;
+    int fd;
+
+    fd = open(file, O_RDONLY);
+    if (fd == -1)
+        return (0);
+    str = strrchr(file, '.');
+    if (str == NULL || strcmp(str, ".cub") != 0)
+        return (0);
+    return (fd);
 }
 
-int	is_blank(char c)
-{
-	if (c == ' ' || c == '\t')
-		return (1);
-	return (0);
-}
 
 int	is_map(char *s)
 {
