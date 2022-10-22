@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 05:49:34 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/22 23:48:19 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_parse
     int wg_char;
     int no_pos;
     int no_map;
+    int map_open;
+    int m_pos;
+    int m_end;
 }   t_parse;
 
 // tools
@@ -55,6 +58,7 @@ int		ft_atoi(const char *str);
 
 t_parse	*parse_identifiers(char **vals, t_parse *p);
 t_parse *check_identifiers(char **tab, t_parse *p);
+t_parse *parse_map(char **map, t_parse *p);
 char	**fill_identifiers(char **to_fill, char **tab, t_parse *p);
 char	**fill_map(char **tab);
 int		check_colors(char *str, int i);

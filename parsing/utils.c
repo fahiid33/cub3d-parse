@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:07:26 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 05:39:27 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/22 23:44:09 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ t_parse	*init_vals(t_parse *p)
 	p->no_pos = 0;
 	p->no_map = 0;
 	p->wg_char = 0;
+	p->map_open = 0;
+	p->m_pos = 0;
+	p->m_end = 0;
 	return (p);
 }
 
@@ -53,7 +56,7 @@ int	is_map(char *s)
 		while (is_blank(s[i]))
 			i++;
 	}
-	if (s[i] == '1' || s[i] == '2' || s[i] == '0')
+	if (s[i] == '1' || s[i] == '0')
 		return (1);
 	return (0);
 }
