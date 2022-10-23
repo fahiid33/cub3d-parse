@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:42:13 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 05:43:44 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:28:26 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,47 @@ int	is_identifier(char *s)
 	i = 0;
 	if (s && s[i])
 	{
-		if (s[i] == 'N' && s[i + 1] == 'O')
+		if (s[i] == 'N' && (s[i + 1] == ' ' ||  s[i + 1] == 'O'))
 			return (1);
-		if (s[i] == 'S' && s[i + 1] == 'O')
+		if (s[i] == 'S' && (s[i + 1] == ' ' ||  s[i + 1] == 'O'))
 			return (2);
-		if (s[i] == 'W' && s[i + 1] == 'E')
+		if (s[i] == 'W' &&  (s[i + 1] == ' ' ||  s[i + 1] == 'E'))
 			return (3);
-		if (s[i] == 'E' && s[i + 1] == 'A')
+		if (s[i] == 'E' &&  (s[i + 1] == ' ' ||  s[i + 1] == 'A'))
 			return (4);
-		if (s[i] == 'F' && s[i + 1] == ' ')
+		if (s[i] == 'F' &&  s[i + 1] == ' ')
 			return (5);
-		if (s[i] == 'C' && s[i + 1] == ' ')
+		if (s[i] == 'C' &&  s[i + 1] == ' ')
 			return (6);
-		if (is_invalid(s[i]))
-			return (7);
+	}
+	return (0);
+}
+
+int	is_invalid(char c)
+{
+	if (c != '\0' && c != '1' && c != '0'
+		&& c != ' ' && c != '\n' && 
+		c != 'N' && c != 'S' && c != 'W'
+		&& c != 'E')
+		return (1);
+	return (0);
+}
+
+int	is_invalid_line(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (is_identifier(s) != 1 && is_identifier(s) != 2 
+		&& is_identifier(s) != 3 && is_identifier(s) != 4 &&
+		is_identifier(s) != 5 && is_identifier(s) != 6)
+	{
+		while (s && s[i] && s[i] != '\n')
+		{
+			if (is_invalid(s[i]))
+				return (1);
+			i++;
+		}
 	}
 	return (0);
 }
@@ -40,27 +67,29 @@ int	is_identifier(char *s)
 t_parse *check_identifiers(char **tab, t_parse *p)
 {
 	int	i;
-
+	
 	i = 0;
 	while (tab[i])
 	{
 		if (is_identifier(tab[i]) == 1)
-			p->NO = 1;
-		else if (is_identifier(tab[i]) == 2)
-			p->SO = 1;
-		else if (is_identifier(tab[i]) == 3)
-			p->WE = 1;
-		else if (is_identifier(tab[i]) == 4)
-			p->EA = 1;
-		else if (is_identifier(tab[i]) == 5)
-			p->floor = 1;
-		else if (is_identifier(tab[i]) == 6)
-			p->ceil = 1;
-		else if (is_identifier(tab[i]) == 7)
+			p->NO += 1;
+		if (is_identifier(tab[i]) == 2)
+			p->SO += 1;
+		if (is_identifier(tab[i]) == 3)
+			p->WE += 1;
+		if (is_identifier(tab[i]) == 4)
+			p->EA += 1;
+		if (is_identifier(tab[i]) == 5)
+			p->floor += 1;
+		if (is_identifier(tab[i]) == 6)
+			p->ceil += 1;
+		if (is_invalid_line(tab[i]) == 1)
+		{
+			printf("here = %s-- i = %d\n", tab[i], i);;
 			p->inv_line = 1;
+		}
 		i++;
 	}
-	printf("init == p->NO = %d p->SO = %d  p->WE = %d p->EA = %d  p->floor = %d p->ceil = %d\n", p->NO, p->SO, p->WE,p->EA, p->floor, p->ceil);
 	return (p);
 }
 
@@ -85,9 +114,9 @@ char	**fill_identifiers(char **to_fill, char **tab, t_parse *p)
 			to_fill[j++] = ft_strdup(tab[i]);
 		else if (is_identifier(tab[i]) == 6 && p->ceil == 1)
 			to_fill[j++] = ft_strdup(tab[i]);
+		
 		i++;
 	}
-	
 	to_fill[j] = NULL;
 	return (to_fill);
 }
@@ -113,7 +142,5 @@ t_parse	*parse_identifiers(char **vals, t_parse *p)
 			p->ceil = check_colors(vals[i], 2);
 		i++;
 	}
-	printf("parse == p->NO = %d p->SO = %d  p->WE = %d p->EA = %d  p->floor = %d p->ceil = %d\n", p->NO, p->SO, p->WE,p->EA, p->floor, p->ceil);
-	system("leaks cub3D");
 	return (p);
 }

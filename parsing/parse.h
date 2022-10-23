@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 23:48:19 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/23 04:06:03 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	**ft_split(char const *s, char c);
 int		only_space(char *str);
 void	free_tab(char **tab);
 int		ft_atoi(const char *str);
+int	    is_digit(int c);
 
 
 // parse

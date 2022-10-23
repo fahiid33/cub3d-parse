@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:01 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 23:47:24 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/23 12:53:31 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ char	**fill_map(char **tab)
 		if (is_map(tab[i]))
 		{
 			while (tab[i])
+			{
 				map[j++] = ft_strdup(tab[i++]);
+			}
 			break ;
 		}
 		i++;
@@ -77,7 +79,7 @@ int	turn_around(char *previous, char *line, char *next)
 		i++;
 	while (line && line[i] != '0' && i > 0)
 		i--;
-	if (i >= (int)ft_strlen(previous) || i >= (int)ft_strlen(next))
+	if (i >= (int)ft_strlen(previous) - 1 || i >= (int)ft_strlen(next) - 1)
 		return (0);
 	return (1);
 }
@@ -91,7 +93,7 @@ int	invalid_char(char *s)
 	{
 		if (s[i] != '1' && s[i] != '0' && s[i] != 'N'
 			&& s[i] != 'S' && s[i] != 'E' && s[i] != 'W' 
-			&& s[i] != ' ')
+			&& s[i] != ' ' && s[i] != '\n')
 			return (1);
 		i++;
 	}
@@ -113,15 +115,63 @@ int	check_position(char *s)
 	return (count);
 }
 
+int	not_in_end(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line)
+		return (1);
+	while ((line[i] && line[i] == '\n') || line[i] == ' ')
+		i++;
+	if (line && line[i])
+		return (0);
+	return (1);
+	
+}
+
 t_parse	*final_check(char *line, t_parse *p, int pos)
 {
 	if (pos == 0)
 		p->no_pos = 1;
 	if (pos > 1)
 		p->m_pos = 1;
-	if (line != 0)
+	if (!not_in_end(line))
 		p->m_end = 1;
 	return (p);
+}
+
+int	internal_check(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map && map[i])
+	{
+		j = 0;
+			printf("%s", map[i]);
+		while (map[i][j])
+		{
+			if (i == 0 && j > 0 && map[i][j] == '0' && map[i][j + 1] == ' '
+				&& map[i][j - 1] == ' ')
+			{
+				return (0);
+			}
+			if (map[i + 1] == 0 && map[i][j] == '0' && map[i][j + 1] == ' ')
+			{
+				return (0);
+			}
+			if (i > 0 && map[i][j] == '0' && (map[i - 1][j] == ' ' 
+				|| map[i + 1][j] == ' '))
+			{
+				return (0);
+			}	
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 t_parse *parse_map(char **map, t_parse *p)
@@ -131,7 +181,12 @@ t_parse *parse_map(char **map, t_parse *p)
 
 	i = 0;
 	pos = 0;
-    if (map[0] == 0)
+	if (internal_check(map) == 0)
+	{
+		printf("WEEe\n");
+		p->map_open = 1;
+	}
+	if (map[0] == 0)
 		p->no_map = 1;
 	else
 	{
@@ -139,8 +194,8 @@ t_parse *parse_map(char **map, t_parse *p)
 		{
 			if ((i == 0 && !map_closed(map[i])) || !closed_sides(map[i]))
 				p->map_open = 1;
-			if (i > 0 && map[i + 1] != 0 && !turn_around(map[i - 1], map[i], map[i + 1]))
-				p->map_open = 1;
+			// if (i > 0 && map[i + 1] != 0 && !turn_around(map[i - 1], map[i], map[i + 1]))
+			// 	p->map_open = 1;
 			if (map[i + 1] == 0)
 				if (!map_closed(map[i]))
 					p->map_open = 1;

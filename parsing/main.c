@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 23:47:44 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:40:21 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	to_parse(char **tab)
 	map = fill_map(tab);
 	parse = parse_identifiers(identifiers, parse);
 	parse = parse_map(map, parse);
+	printf("NO == %d So == %d EA == %d WE == %d", parse->NO, parse->SO, parse->EA, parse->WE);
+	printf(" inv_line = %d m_end = %d m_pos = %d map_open = %d ", parse->inv_line, parse->m_end, 
+	parse->m_pos, parse->map_open);
+	printf("ceiling = %d floor = %d ", parse->ceil, parse->floor);
+	printf("no_map = %d no_pos = %d wg_char = %d m_pos = %d\n", parse->no_map, 
+	parse->no_pos, parse->wg_char , parse->m_end);
 	return 0;
 }
 
