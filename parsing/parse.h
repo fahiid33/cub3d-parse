@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/23 04:06:03 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 04:51:05 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int		only_space(char *str);
 void	free_tab(char **tab);
 int		ft_atoi(const char *str);
 int	    is_digit(int c);
+char	*ft_strrchr(const char *s, int c);
+int	    ft_strncmp(const char *s1, const char *s2, size_t n);
 
 
 // parse
@@ -60,6 +62,7 @@ int	    is_digit(int c);
 t_parse	*parse_identifiers(char **vals, t_parse *p);
 t_parse *check_identifiers(char **tab, t_parse *p);
 t_parse *parse_map(char **map, t_parse *p);
+t_parse *check_map(t_parse *p, char **map);
 char	**fill_identifiers(char **to_fill, char **tab, t_parse *p);
 char	**fill_map(char **tab);
 int		check_colors(char *str, int i);

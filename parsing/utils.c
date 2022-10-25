@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:07:26 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 23:44:09 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/23 23:35:18 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int check_file(char *file)
     if (fd == -1)
         return (0);
     str = strrchr(file, '.');
-    if (str == NULL || strcmp(str, ".cub") != 0)
+    if (str == NULL || strcmp(str, ".cub") != 0 || !strcmp(file, ".cub")) 
         return (0);
     return (fd);
 }

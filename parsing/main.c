@@ -6,11 +6,12 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/23 11:40:21 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 04:51:24 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
 
 int	to_parse(char **tab)
 {
@@ -21,10 +22,13 @@ int	to_parse(char **tab)
 	parse = malloc(sizeof(t_parse));
 	identifiers = malloc(sizeof(char *) * 8);
 
+	// for(int k = 0; tab[k] ; k++)
+	// 	printf("%s", tab[k]);
 	parse = init_vals(parse);
 	parse = check_identifiers(tab, parse);
 	identifiers = fill_identifiers(identifiers, tab, parse);
 	map = fill_map(tab);
+	parse = check_map(parse, map);
 	parse = parse_identifiers(identifiers, parse);
 	parse = parse_map(map, parse);
 	printf("NO == %d So == %d EA == %d WE == %d", parse->NO, parse->SO, parse->EA, parse->WE);

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/23 04:07:52 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/23 23:41:08 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ int	check_textures(char *str, int i)
 	int	fd;
 	int	len;
 	char *file;
+	char	*extension;
 
 	if (is_blank(str[i]))
 		while(is_blank(str[i]))
 			i++;
+	extension = ft_strrchr(str + i, '.');
+	if (ft_strncmp(extension, ".xpm", 4) != 0 || !ft_strncmp(str + i, ".xpm", 4))
+		return (-1);	
 	len = ft_strlen(str + i) - 1;
 	file = ft_substr(str + i, 0, len);
 	fd = open(file , O_RDONLY);

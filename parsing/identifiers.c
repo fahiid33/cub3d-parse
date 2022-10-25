@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:42:13 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/23 11:28:26 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 05:20:03 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,21 +100,32 @@ char	**fill_identifiers(char **to_fill, char **tab, t_parse *p)
 
 	i = 0;
 	j = 0;
-	while (tab[i])
+	while (tab && tab[i] && !is_map(tab[i]))
 	{
 		if (is_identifier(tab[i]) == 1 && p->NO == 1)
+		{
 			to_fill[j++] = ft_strdup(tab[i]);
+		}
 		else if (is_identifier(tab[i]) == 2 && p->SO == 1)
+		{
 			to_fill[j++] = ft_strdup(tab[i]);
+		}
 		else if (is_identifier(tab[i]) == 3 && p->WE == 1)
+		{
 			to_fill[j++] = ft_strdup(tab[i]);
+		}
 		else if (is_identifier(tab[i]) == 4 && p->EA == 1)
+		{
 			to_fill[j++] = ft_strdup(tab[i]);
+		}
 		else if (is_identifier(tab[i]) == 5 && p->floor == 1)
+		{
 			to_fill[j++] = ft_strdup(tab[i]);
+		}
 		else if (is_identifier(tab[i]) == 6 && p->ceil == 1)
+		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		
+		}
 		i++;
 	}
 	to_fill[j] = NULL;
