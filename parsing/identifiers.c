@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:42:13 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 05:20:03 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 13:22:58 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ int	is_identifier(char *s)
 int	is_invalid(char c)
 {
 	if (c != '\0' && c != '1' && c != '0'
-		&& c != ' ' && c != '\n' && 
-		c != 'N' && c != 'S' && c != 'W'
-		&& c != 'E')
+		&& c != ' ' && c != 'N' && c != 'S' 
+		&& c != 'W' && c != 'E')
 		return (1);
 	return (0);
 }
@@ -54,7 +53,7 @@ int	is_invalid_line(char *s)
 		&& is_identifier(s) != 3 && is_identifier(s) != 4 &&
 		is_identifier(s) != 5 && is_identifier(s) != 6)
 	{
-		while (s && s[i] && s[i] != '\n')
+		while (s && s[i])
 		{
 			if (is_invalid(s[i]))
 				return (1);
@@ -85,7 +84,6 @@ t_parse *check_identifiers(char **tab, t_parse *p)
 			p->ceil += 1;
 		if (is_invalid_line(tab[i]) == 1)
 		{
-			printf("here = %s-- i = %d\n", tab[i], i);;
 			p->inv_line = 1;
 		}
 		i++;
@@ -126,9 +124,17 @@ char	**fill_identifiers(char **to_fill, char **tab, t_parse *p)
 		{
 			to_fill[j++] = ft_strdup(tab[i]);
 		}
+		else if (!only_space(tab[i]))
+		{
+			to_fill[j++] = ft_strdup(tab[i]);
+		}
 		i++;
 	}
 	to_fill[j] = NULL;
+	if (map_len(to_fill) != 6)
+		p->flag = 1;
+	// for (int k = 0; to_fill[k]; k++)
+	// 	printf("%s\n", to_fill[k]);
 	return (to_fill);
 }
 

@@ -6,7 +6,7 @@
 #    By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/21 01:18:51 by fstitou           #+#    #+#              #
-#    Updated: 2022/10/23 14:21:40 by fstitou          ###   ########.fr        #
+#    Updated: 2022/10/25 13:39:01 by fstitou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ all : $(NAME)
 
 $(NAME):
 	
-	@gcc  $(CFLAGS) -g $(SRC) -o $(NAME) 
+	@gcc  $(CFLAGS) -g $(SRC) -o $(NAME)
 	@echo "👍👍👍"
 
 

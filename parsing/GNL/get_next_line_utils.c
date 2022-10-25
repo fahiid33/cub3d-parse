@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 00:53:35 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/21 23:15:32 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 11:38:56 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,9 @@ int	ft_strchr(const char *s, int c)
 	if (!s)
 		return (-1);
 	if ((char)c == '\0' && s[i] == '\0')
+	{
 		return (-1);
+	}
 	while (s[i])
 	{
 		if (s[i] == (char)c)

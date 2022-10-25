@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 04:51:24 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 13:29:10 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ int	to_parse(char **tab)
 
 	parse = malloc(sizeof(t_parse));
 	identifiers = malloc(sizeof(char *) * 8);
-
-	// for(int k = 0; tab[k] ; k++)
-	// 	printf("%s", tab[k]);
 	parse = init_vals(parse);
 	parse = check_identifiers(tab, parse);
 	identifiers = fill_identifiers(identifiers, tab, parse);
 	map = fill_map(tab);
-	parse = check_map(parse, map);
+	// parse = check_map(parse, map);
 	parse = parse_identifiers(identifiers, parse);
 	parse = parse_map(map, parse);
 	printf("NO == %d So == %d EA == %d WE == %d", parse->NO, parse->SO, parse->EA, parse->WE);
@@ -56,13 +53,16 @@ int main(int ac, char **av)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
+		int len = ft_int_strchr(line, '\n');
+		if (line == NULL || len == -1)
 			break;
-		tab[i] = line;
+		tab[i] = ft_strndup(line, len);
 		i++;
 	}
 	tab[i] = NULL;
 	if (to_parse(tab) == 0)
+	{
 		printf("OK\n");
+	}
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/23 23:41:08 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 11:59:14 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	check_textures(char *str, int i)
 		while(is_blank(str[i]))
 			i++;
 	extension = ft_strrchr(str + i, '.');
-	if (ft_strncmp(extension, ".xpm", 4) != 0 || !ft_strncmp(str + i, ".xpm", 4))
+	if (extension == NULL || !ft_strncmp(str + i, ".xpm", 4))
 		return (-1);	
-	len = ft_strlen(str + i) - 1;
+	len = ft_strlen(str + i);
 	file = ft_substr(str + i, 0, len);
 	fd = open(file , O_RDONLY);
 	if (fd == -1)
@@ -42,9 +42,9 @@ int	check_textures(char *str, int i)
 int	last_color(char *str, int i)
 {
 	i++;
-	if (str[i] == '\0'|| str[i] == '\n')
+	if (str[i] == '\0')
 		return (0);
-	while (is_digit(str[i]) || is_blank(str[i]) || str[i] == '\n')
+	while (is_digit(str[i]) || is_blank(str[i]))
 		i++;
 	if (str[i] != '\0')
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 04:51:05 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 13:04:50 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_parse
     int map_open;
     int m_pos;
     int m_end;
+    int flag;
 }   t_parse;
 
 // tools
@@ -55,7 +56,9 @@ int		ft_atoi(const char *str);
 int	    is_digit(int c);
 char	*ft_strrchr(const char *s, int c);
 int	    ft_strncmp(const char *s1, const char *s2, size_t n);
-
+char	*ft_strndup(char *str, unsigned int n);
+int     ft_int_strchr(const char *s, int c);
+int	    map_len(char **map);
 
 // parse
 

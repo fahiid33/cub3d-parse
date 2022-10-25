@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:28:10 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/22 05:38:32 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 11:43:26 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	only_space(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (str[i])
 	{
 		if (str[i] != ' ')
 			return (0);

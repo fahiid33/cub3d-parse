@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:30:08 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/23 23:42:14 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 11:40:50 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,35 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	if (i != n)
 		return (ss1[i] - ss2[i]);
 	return (0);
+}
+
+char	*ft_strndup(char *str, unsigned int n)
+{
+	char				*new;
+	unsigned int		i;
+
+	i = 0;
+	new = malloc(sizeof(char) * (n + 1));
+	while (i < n)
+		new[i++] = *str++;
+	new[n] = 0;
+	return (new);
+}
+
+int	ft_int_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (-1);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (i);
+		i++;
+	}
+	if (s[i] == '\0')
+		return (i);
+	return (-1);
 }

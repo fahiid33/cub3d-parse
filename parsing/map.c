@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:01 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 05:26:35 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 13:39:34 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ char	**fill_map(char **tab)
 		i++;
 	}
 	map[j] = NULL;
-	for (int k = 0; map[k]; k++)
-		printf("%s", map[k]);
 	return (map);
 }
 
@@ -72,7 +70,7 @@ int	map_closed(char *str)
 		i++;
 	while (str && str[i] && str[i] == '1')
 		i++;
-	if (str && str[i] != '\0' && str[i] != '\n')
+	if (str && str[i] != '\0')
 		return (0);
 	return (1);
 }
@@ -86,7 +84,7 @@ int	closed_sides(char *str)
 		i++;
 	if (str && str[i] && str[i] != '1')
 		return (0);
-	while (str && str[i] && str[i] != '\n')
+	while (str && str[i])
 		i++;
 	i--;
 	if (str && str[i] != '1')
@@ -99,7 +97,7 @@ int	turn_around(char *previous, char *line, char *next)
 	int	i;
 
 	i = 0;
-	while (line && line[i] && line[i] != '\n')
+	while (line && line[i])
 		i++;
 	while (line && line[i] != '0' && i > 0)
 		i--;
@@ -146,22 +144,29 @@ int	not_in_end(char *line)
 	i = 0;
 	if (!line)
 		return (1);
-	while ((line[i] && line[i] == '\n') || line[i] == ' ')
+	while (line[i] || line[i] == ' ')
 		i++;
 	if (line && line[i])
 		return (0);
-	return (1);
-	
+	return (1);	
 }
 
-t_parse	*final_check(char *line, t_parse *p, int pos)
+t_parse	*final_check(char **rest, t_parse *p, int pos)
 {
-	if (pos == 0)
+	int	i = 0;
+	if (pos == 0 && !p->flag)
 		p->no_pos = 1;
-	if (pos > 1)
+	if (pos > 1 && !p->flag)
 		p->m_pos = 1;
-	if (!not_in_end(line))
-		p->m_end = 1;
+	while (rest[i] && !p->flag)
+	{
+		if (rest[i][0] != '\0' && !only_space(rest[i]))
+		{
+			p->m_end = 1;
+			break ;
+		}
+		i++;
+	}
 	return (p);
 }
 
@@ -184,7 +189,7 @@ int	is_absl_map(char *str)
 	{
 		if (str[i] != '1' && str[i] != '0' && str[i] != 'N' 
 			&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W'
-			&& str[i] != ' ' && str[i] != '\n')
+			&& str[i] != ' ')
 			return (0);
 		i++;
 	}
@@ -214,20 +219,24 @@ int	internal_check(char **map)
 	int	j;
 
 	i = 0;
+	// for(int j = 0; map[j]; j++)
+	// 	printf("%s\n", map[j]);
+
+	// exit(0);
 	while (map && map[i] && is_map(map[i]))
 	{
 		j = 0;
 		while (map[i][j])
 		{
+			// exit(0);
 			if (i > 0 && map[i][j] == '0' && (map[i][j + 1] == ' ' 
 				|| map[i][j - 1] == ' '))
 			{
 					return (0);
 			}
-			else if (map[i + 1] && map[i][j] == '0' && (map[i - 1][j] == ' '
+			else if (i > 0 && map[i + 1] && map[i][j] == '0' && (map[i - 1][j] == ' '
 				|| map[i + 1][j] == ' ' ||  map[i - 1][j] == '\0'
-				|| map[i + 1][j] == '\0' ||  map[i - 1][j] == '\n'
-				|| map[i + 1][j] == '\n'))
+				|| map[i + 1][j] == '\0'))
 			{
 					return (0);
 			}
@@ -246,17 +255,15 @@ t_parse *parse_map(char **map, t_parse *p)
 
 	i = 0;
 	pos = 0;
-	if (map[0] == 0 || p->no_map == 1)
+	if (map[0] == 0)
 	{
 		p->no_map = 1;
 		return (p);
 	}
 	else
-	{
-		while (map && map[i] && is_map(map[i]))
+	{	
+		while (map && map[i] && is_map(map[i]) && !p->flag)
 		{
-			if (map[0][0] == '\n')
-				p->map_open = 1;
 			if ((i == 0 && !map_closed(map[i])) || !closed_sides(map[i]))
 			{
 				p->map_open = 1;
@@ -272,12 +279,15 @@ t_parse *parse_map(char **map, t_parse *p)
 				pos += check_position(map[i]);
 			i++;
 		}
-		p = final_check(map[i], p, pos);
+		// printf("|%s|\n", map);
+		p = final_check(map + i, p, pos);
 	}
-	if (p->map_open != 1)
+	if (!p->flag)
 	{
 		if (!internal_check(map))
+		{
 			p->map_open = 1;
+		}
 	}
 	return (p);
 }
