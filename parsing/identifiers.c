@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:42:13 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 13:22:58 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:01:47 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ t_parse *check_identifiers(char **tab, t_parse *p)
 		if (is_identifier(tab[i]) == 6)
 			p->ceil += 1;
 		if (is_invalid_line(tab[i]) == 1)
-		{
 			p->inv_line = 1;
-		}
 		i++;
 	}
 	return (p);
@@ -101,40 +99,24 @@ char	**fill_identifiers(char **to_fill, char **tab, t_parse *p)
 	while (tab && tab[i] && !is_map(tab[i]))
 	{
 		if (is_identifier(tab[i]) == 1 && p->NO == 1)
-		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		}
 		else if (is_identifier(tab[i]) == 2 && p->SO == 1)
-		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		}
 		else if (is_identifier(tab[i]) == 3 && p->WE == 1)
-		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		}
 		else if (is_identifier(tab[i]) == 4 && p->EA == 1)
-		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		}
 		else if (is_identifier(tab[i]) == 5 && p->floor == 1)
-		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		}
 		else if (is_identifier(tab[i]) == 6 && p->ceil == 1)
-		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		}
 		else if (!only_space(tab[i]))
-		{
 			to_fill[j++] = ft_strdup(tab[i]);
-		}
 		i++;
 	}
 	to_fill[j] = NULL;
 	if (map_len(to_fill) != 6)
 		p->flag = 1;
-	// for (int k = 0; to_fill[k]; k++)
-	// 	printf("%s\n", to_fill[k]);
 	return (to_fill);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:07:26 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 13:06:18 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:03:42 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,28 @@ int	is_map(char *s)
 	return (0);
 }
 
+int	map_len(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	check_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (is_blank(str[i]))
+			i++;
+	while (str && is_digit(str[i]))
+		i++;
+	while (is_blank(str[i]))
+		i++;
+	if (is_digit(str[i]))
+		return (0);
+	return (1);
+}

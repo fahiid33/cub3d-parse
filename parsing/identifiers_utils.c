@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 11:59:14 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:14:07 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	check_textures(char *str, int i)
 		while(is_blank(str[i]))
 			i++;
 	extension = ft_strrchr(str + i, '.');
-	if (extension == NULL || !ft_strncmp(str + i, ".xpm", 4))
+	if (extension == NULL || !ft_strncmp(str + i, ".xpm", 4) 
+	|| !ft_strncmp(extension, ".xpm", 4))
 		return (-1);	
 	len = ft_strlen(str + i);
 	file = ft_substr(str + i, 0, len);
@@ -49,23 +50,6 @@ int	last_color(char *str, int i)
 	if (str[i] != '\0')
 		return (0);
 	return (1);
-}
-int	check_space(char *str)
-{
-	int	i;
-
-	i = 0;
-
-	while (is_blank(str[i]))
-			i++;
-	while (str && is_digit(str[i]))
-		i++;
-	while (is_blank(str[i]))
-		i++;
-	if (is_digit(str[i]))
-		return (0);
-	return (1);
-	
 }
 
 int	check_range(char **tab)

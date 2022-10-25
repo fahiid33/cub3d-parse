@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 13:04:50 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:03:26 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,10 @@ char	**fill_identifiers(char **to_fill, char **tab, t_parse *p);
 char	**fill_map(char **tab);
 int		check_colors(char *str, int i);
 int		check_textures(char *str, int i);
+int	    map_closed(char *str);
+int	    *get_player_position(char **str);
+int	    invalid_char(char *s);
+int	    check_position(char *s);
+int	    check_space(char *str);
 
 #endif

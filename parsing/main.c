@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 13:29:10 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:10:44 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,37 @@ int	to_parse(char **tab)
 	return 0;
 }
 
-int main(int ac, char **av)
+char	**init_file(char **tab, int fd)
 {
-    char *line;
-    int i;
-    char **tab;
-	int	fd;
+	char	*line;
+	int		len;
+	int		i;
 
-	(void)ac;
 	i = 0;
-	tab = malloc(sizeof(char *) * 100);
-    fd = check_file(av[1]);
-    if (fd == 0)
-		errors(1);
 	while (1)
 	{
 		line = get_next_line(fd);
-		int len = ft_int_strchr(line, '\n');
+		len = ft_int_strchr(line, '\n');
 		if (line == NULL || len == -1)
 			break;
 		tab[i] = ft_strndup(line, len);
 		i++;
 	}
 	tab[i] = NULL;
+	return (tab);
+}
+
+int main(int ac, char **av)
+{
+    char	**tab;
+	int		fd;
+
+	(void)ac;
+	tab = malloc(sizeof(char *) * 100);
+    fd = check_file(av[1]);
+    if (fd == 0)
+		errors(1);
+	tab = init_file(tab, fd);
 	if (to_parse(tab) == 0)
 	{
 		printf("OK\n");
