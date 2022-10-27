@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:52:21 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 13:59:54 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 07:07:43 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	invalid_char(char *s)
 	while (s[i])
 	{
 		if (s[i] != '1' && s[i] != '0'
-			&& s[i] != ' ')
+			&& s[i] != ' ' && s[i] != 'N'
+			&& s[i] != 'E' && s[i] != 'S'
+			&& s[i] != 'W')
 			return (1);
 		i++;
 	}
@@ -72,9 +74,11 @@ int	map_closed(char *str)
 	i = 0;
 	while (str && is_blank(str[i]))
 		i++;
-	while (str && str[i] && str[i] == '1')
+	while (str && str[i] && (str[i] == '1' || str[i] == ' '))
 		i++;
 	if (str && str[i] != '\0')
+	{
 		return (0);
+	}
 	return (1);
 }

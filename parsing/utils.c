@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:07:26 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 14:03:42 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 07:02:32 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_parse	*init_vals(t_parse *p)
 	p->SO = 0;
 	p->WE = 0;
 	p->EA = 0;
-	p->R = 0;
 	p->floor = 0;
 	p->ceil = 0;
 	p->inv_line = 0;
@@ -39,10 +38,10 @@ int check_file(char *file)
 
     fd = open(file, O_RDONLY);
     if (fd == -1)
-        return (0);
+        return (-1);
     str = strrchr(file, '.');
     if (str == NULL || strcmp(str, ".cub") != 0 || !strcmp(file, ".cub")) 
-        return (0);
+        return (-1);
     return (fd);
 }
 
@@ -52,6 +51,8 @@ int	is_map(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	if (is_blank(s[i]))
 	{
 		while (is_blank(s[i]))

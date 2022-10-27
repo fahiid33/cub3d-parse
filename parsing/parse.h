@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 14:03:26 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 06:40:02 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_parse
     int SO;
     int WE;
     int EA;
-    int R;
     int floor;
     int ceil;
     int inv_line;

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:01 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 13:57:35 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 07:13:23 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ char	**fill_map(char **tab)
 		if (is_map(tab[i]))
 		{
 			while (tab[i])
-			{
 				map[j++] = ft_strdup(tab[i++]);
-			}
 			break ;
 		}
 		i++;
@@ -51,6 +49,9 @@ int	closed_sides(char *str)
 	while (str && str[i])
 		i++;
 	i--;
+	if (is_blank(str[i]))
+		while (is_blank(str[i]))
+			i--;
 	if (str && str[i] != '1')
 		return (0);
 	return (1);
@@ -89,7 +90,7 @@ int	internal_check(char **map)
 			if (i > 0 && map[i][j] == '0' && (map[i][j + 1] == ' ' 
 				|| map[i][j - 1] == ' '))
 					return (0);
-			else if (i > 0 && map[i + 1] && map[i][j] == '0' && (map[i - 1][j] == ' '
+			else if (i > 0 && is_map(map[i + 1]) && map[i][j] == '0' && (map[i - 1][j] == ' '
 				|| map[i + 1][j] == ' ' ||  map[i - 1][j] == '\0'
 				|| map[i + 1][j] == '\0'))
 					return (0);
@@ -114,11 +115,15 @@ t_parse *parse_map(char **map, t_parse *p)
 	{	
 		while (map && map[i] && is_map(map[i]) && !p->flag)
 		{
-			if ((i == 0 && !map_closed(map[i])) || !closed_sides(map[i]))
+			if ((i == 0 && !map_closed(map[i])))
 				p->map_open = 1;
-			if (map[i + 1] == 0)
+			if (i > 0 && map[i + 1] != 0 &&!closed_sides(map[i]))
+				p->map_open = 1;
+			if (map[i + 1] == 0 || !is_map(map[i + 1]))
+			{
 				if (!map_closed(map[i]))
 					p->map_open = 1;
+			}
 			if (invalid_char(map[i]))
 				p->wg_char = 1;
 			if (check_position(map[i]))
