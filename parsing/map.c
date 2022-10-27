@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:01 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 07:13:23 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 11:37:03 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**fill_map(char **tab)
 	{
 		if (is_map(tab[i]))
 		{
-			while (tab[i])
+			while (tab[i] && is_map(tab[i]))
 				map[j++] = ft_strdup(tab[i++]);
 			break ;
 		}

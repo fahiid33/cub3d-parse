@@ -6,12 +6,15 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 06:40:02 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 12:00:08 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 #define PARSE_H
+
+#define WIDTH 766
+#define HEIGHT 766
 
 #include <stdlib.h> 
 #include "GNL/get_next_line.h"
@@ -20,6 +23,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <ctype.h>
+// #include <mlx.h>
 
 
 typedef struct s_parse
@@ -39,6 +43,26 @@ typedef struct s_parse
     int m_end;
     int flag;
 }   t_parse;
+
+typedef struct s_infos
+{
+    int		x;
+    int		y;
+    int		ceil;
+    int     floor;
+	void	*win;
+    void    *img;
+	void	*mlx;
+	void	*img_add;
+	int		*bpp;
+	int		*size;
+	int		*end;
+	char	**map;
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+}	t_info;
 
 // tools
 
@@ -65,6 +89,7 @@ t_parse	*parse_identifiers(char **vals, t_parse *p);
 t_parse *check_identifiers(char **tab, t_parse *p);
 t_parse *parse_map(char **map, t_parse *p);
 t_parse *check_map(t_parse *p, char **map);
+t_info	*fill_infos(char **tab);
 char	**fill_identifiers(char **to_fill, char **tab, t_parse *p);
 char	**fill_map(char **tab);
 int		check_colors(char *str, int i);
@@ -74,5 +99,6 @@ int	    *get_player_position(char **str);
 int	    invalid_char(char *s);
 int	    check_position(char *s);
 int	    check_space(char *str);
+int		is_identifier(char *s);
 
 #endif

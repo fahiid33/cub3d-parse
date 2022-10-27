@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:52:21 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 07:07:43 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 11:08:03 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	*get_player_position(char **str)
 	int	*tab;
 
 	tab = malloc(8);
-	tab[0] = 1;
+	tab[0] = 0;
 	tab[1] = 0;
 	while (str[tab[0]])
 	{
