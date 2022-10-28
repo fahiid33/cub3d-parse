@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:52:21 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 11:08:03 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 16:07:56 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,14 @@ int	*get_player_position(char **str)
 		tab[1] = 0;
 		while (str[tab[0]][tab[1]])
 		{
-			if (str[tab[0]][tab[1]] == 'N' || str[tab[0]][tab[1] == 'S'
-				|| str[tab[0]][tab[1]]] == 'W' || str[tab[0]][tab[1]] == 'E')
+			if (str[tab[0]][tab[1]] == 'N' || str[tab[0]][tab[1]] == 'S'
+				|| str[tab[0]][tab[1]] == 'W' || str[tab[0]][tab[1]] == 'E')
 				return (tab);
 			tab[1]++;
 		}
 		tab[0]++;
 	}
+	exit(0);
 	return (NULL);
 }
 

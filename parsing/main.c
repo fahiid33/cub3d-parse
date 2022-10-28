@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 12:00:53 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 16:17:08 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	to_parse(char **tab)
 	parse = init_vals(parse);
 	parse = check_identifiers(tab, parse);
 	identifiers = fill_identifiers(identifiers, tab, parse);
-	map = fill_map(tab);
+	map = fill_map(tab, 0);
 	parse = parse_identifiers(identifiers, parse);
 	parse = parse_map(map, parse);
 	if (print_errors(parse) == 1)

@@ -6,13 +6,13 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:01 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 11:37:03 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 16:16:22 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-char	**fill_map(char **tab)
+char	**fill_map(char **tab, int flag)
 {
 	int		i;
 	int		j;
@@ -27,7 +27,9 @@ char	**fill_map(char **tab)
 	{
 		if (is_map(tab[i]))
 		{
-			while (tab[i] && is_map(tab[i]))
+			while (tab[i] && is_map(tab[i]) && flag)
+				map[j++] = ft_strdup(tab[i++]);
+			while (tab[i] && !flag)
 				map[j++] = ft_strdup(tab[i++]);
 			break ;
 		}

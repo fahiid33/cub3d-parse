@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 12:00:08 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/27 16:16:48 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_parse *parse_map(char **map, t_parse *p);
 t_parse *check_map(t_parse *p, char **map);
 t_info	*fill_infos(char **tab);
 char	**fill_identifiers(char **to_fill, char **tab, t_parse *p);
-char	**fill_map(char **tab);
+char	**fill_map(char **tab, int flag);
 int		check_colors(char *str, int i);
 int		check_textures(char *str, int i);
 int	    map_closed(char *str);
@@ -100,5 +100,6 @@ int	    invalid_char(char *s);
 int	    check_position(char *s);
 int	    check_space(char *str);
 int		is_identifier(char *s);
+int		print_errors(t_parse *p);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:01:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 11:59:55 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/28 19:36:46 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,28 @@ void	print_struct(t_info *info)
 	
 }
 
+t_info	*fill_more_infos(char **tab, t_info *info)
+{
+	int		*pos;
+
+	info->map = fill_map(tab, 1);
+	pos = get_player_position(info->map);
+	info->x = pos[0];
+	info->y = pos[1];
+	info->mlx = mlx_init();
+	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "cub3D");
+	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
+	info->img_add = mlx_get_data_addr(info->img, &info->bpp,
+					&info->size, &info->end);
+	return (info);
+}
+
 t_info	*fill_infos(char **tab)
 {
 	t_info	*info;
 	int		i;
-	int		*pos;
 
 	i = 0;
-	(void)pos;
 	info = malloc(sizeof(t_info));
 	if (!info)
 		return (NULL);
@@ -93,14 +107,7 @@ t_info	*fill_infos(char **tab)
 			info->ceil = get_color(tab[i] + 2);
 		i++;
 	}
-	info->map = fill_map(tab);
-	pos = get_player_position(info->map);
-	info->x = pos[0];
-	info->y = pos[1];
-	// info->mlx = mlx_init();
-	// info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "cub3D");
-	// info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
-	// info->img_add = mlx_get_data_addr(info->img, &info->bpp, &info->size, &info->end);
+	info = fill_more_infos(tab, info);
 	print_struct(info);
 	return (info);
 }
