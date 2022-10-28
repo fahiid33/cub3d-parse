@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:01:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/28 19:36:46 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/28 20:19:16 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ t_info	*fill_more_infos(char **tab, t_info *info)
 	pos = get_player_position(info->map);
 	info->x = pos[0];
 	info->y = pos[1];
-	info->mlx = mlx_init();
-	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "cub3D");
-	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
-	info->img_add = mlx_get_data_addr(info->img, &info->bpp,
-					&info->size, &info->end);
+	// info->mlx = mlx_init();
+	// info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "cub3D");
+	// info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
+	// info->img_add = mlx_get_data_addr(info->img, &info->bpp,
+	// 				&info->size, &info->end);
 	return (info);
 }
 

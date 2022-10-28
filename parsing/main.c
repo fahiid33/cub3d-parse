@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 16:17:08 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/28 20:14:33 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,13 @@ int	to_parse(char **tab)
 	map = fill_map(tab, 0);
 	parse = parse_identifiers(identifiers, parse);
 	parse = parse_map(map, parse);
+	free_tab(identifiers);
+	free_tab(map);
 	if (print_errors(parse) == 1)
 	{
-		free(tab);
-		free(identifiers);
-		free(map);
 		free(parse);
 		return (1);
 	}
-	free(identifiers);
-	free(map);
 	free(parse);
 	return 0;
 }
@@ -75,7 +72,12 @@ int main(int ac, char **av)
 	fd = 0;
 	(void)ac;
 	tab = init_file(av[1], fd);
-	if (to_parse(tab) == 0)
-		fill_infos(tab);
+	if (to_parse(tab) != 0)
+	{
+		close(fd);
+		free_tab(tab);
+		return (0);
+	}
+	fill_infos(tab);
 	return 0;
 }
