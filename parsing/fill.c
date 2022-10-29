@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:01:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/28 20:19:16 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/29 12:25:04 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_texture(char *str)
 	if (is_blank(str[i]))
 		while(is_blank(str[i]))
 			i++;
-	len = ft_strlen(str + i);
+	len = get_len(str + i);
 	file = ft_substr(str + i, 0, len);
 	return (file);
 }
@@ -74,6 +74,7 @@ t_info	*fill_more_infos(char **tab, t_info *info)
 	pos = get_player_position(info->map);
 	info->x = pos[0];
 	info->y = pos[1];
+	free(pos);
 	// info->mlx = mlx_init();
 	// info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "cub3D");
 	// info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);

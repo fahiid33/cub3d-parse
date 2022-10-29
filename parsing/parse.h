@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 16:16:48 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/29 12:23:49 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_infos
 
 t_parse	*init_vals(t_parse *p);
 int		is_map(char *s);
+int	    get_len(char *str);
 int		is_blank(char c);
 int		is_invalid(char c);
 int 	check_file(char *file);

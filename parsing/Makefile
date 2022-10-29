@@ -6,14 +6,14 @@
 #    By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/21 01:18:51 by fstitou           #+#    #+#              #
-#    Updated: 2022/10/27 11:49:24 by fstitou          ###   ########.fr        #
+#    Updated: 2022/10/29 12:24:18 by fstitou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 CFLAGS = -Wall -Wextra -Werror
-SANITIZE = -fsanitize=address
+SANITIZE = -g3 -fsanitize=address
 		
 SRC = *.c GNL/*.c tools/*.c
 

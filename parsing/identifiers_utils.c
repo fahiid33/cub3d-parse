@@ -6,27 +6,45 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/26 00:01:05 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/10/29 12:19:53 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
+int	get_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	i--;
+	if (str && str[i] == ' ')
+	{
+		while (str[i] && str[i] != 'm')
+			i--;
+		return (i + 1);
+	}
+	return (i + 1);
+}
+
 int	check_textures(char *str, int i)
 {
-	int	fd;
-	int	len;
-	char *file;
+	int		fd;
+	int		len;
+	char 	*file;
 	char	*extension;
 
-	if (is_blank(str[i]))
-		while(is_blank(str[i]))
-			i++;
+	if (!is_blank(str[i]) && str[0] == 'W' && str[1] != ' ')
+		return (0);
+	while(str && is_blank(str[i]))
+		i++;
 	extension = ft_strrchr(str + i, '.');
 	if (extension == NULL || !ft_strncmp(str + i, ".xpm", 4)
 		|| ft_strncmp(extension, ".xpm", 4) != 0)
 		return (-1);	
-	len = ft_strlen(str + i);
+	len = get_len(str + i);
 	file = ft_substr(str + i, 0, len);
 	fd = open(file , O_RDONLY);
 	if (fd == -1)
