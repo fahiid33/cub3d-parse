@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:52:21 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 16:07:56 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:39:30 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ int	invalid_char(char *s)
 			return (1);
 		i++;
 	}
+	return (0);
+}
+
+int	is_invalid(char c)
+{
+	if (c != '\0' && c != '1' && c != '0'
+		&& c != ' ' && c != 'N' && c != 'S'
+		&& c != 'W' && c != 'E')
+		return (1);
 	return (0);
 }
 

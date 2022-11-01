@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:32:43 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/28 20:17:56 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:50:38 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,18 @@ void	errors(int err)
 	}
 }
 
-int	print_errors2(t_parse *p)
+int	there_is_error(t_parse *p)
+{
+	if (p->no != 1 || p->so != 1 || p->we != 1
+		|| p->ea != 1 || p->ceil != 1 || p->floor != 1 || p->flag != 0
+		|| p->inv_line != 0 || p->m_end != 0 || p->map_open != 0
+		|| p->no_map != 0 || p->no_pos != 0 || p->m_pos != 0
+		|| p->wg_char != 0)
+		return (1);
+	return (0);
+}
+
+int	print_error3(t_parse *p)
 {
 	if (p->wg_char == 1)
 	{
@@ -33,6 +44,13 @@ int	print_errors2(t_parse *p)
 		printf("The map is open\n");
 		return (1);
 	}
+	return (0);
+}
+
+int	print_errors2(t_parse *p)
+{
+	if (print_error3(p))
+		return (1);
 	if (p->m_end == 1)
 	{
 		printf("The map is not at end of file\n");
@@ -53,17 +71,15 @@ int	print_errors2(t_parse *p)
 
 int	print_errors1(t_parse *p)
 {
-	if (p->NO != 1 || p->SO != 1 || p->WE != 1 
-		|| p->EA != 1 || p->ceil != 1 || p->floor != 1 || p->flag != 0
-		|| p->inv_line != 0 || p->m_end != 0 || p->map_open != 0 || p->no_map != 0
-		|| p->no_pos != 0 || p->m_pos != 0 || p->wg_char != 0)
+	if (there_is_error(p))
 		printf("Error\n");
-	if (p->NO <= 0 || p->SO <= 0 || p->EA <= 0 || p->WE <= 0)
+	if (p->no <= 0 || p->so <= 0 || p->ea <= 0 || p->we <= 0)
 	{
 		printf("Invalid texture(s) file\n");
 		return (1);
 	}
-	if (p->NO > 1 || p->SO > 1|| p->EA > 1 || p->WE > 1 || p->floor > 1 || p->ceil > 1)
+	if (p->no > 1 || p->so > 1 || p->ea > 1 || p->we > 1
+		|| p->floor > 1 || p->ceil > 1)
 	{
 		printf("Duplication in the identifiers\n");
 		return (1);
@@ -80,6 +96,7 @@ int	print_errors1(t_parse *p)
 	}
 	return (0);
 }
+
 int	print_errors(t_parse *p)
 {
 	if (print_errors1(p))

@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:28:10 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/25 11:43:26 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:45:17 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	is_digit(int c)
 
 int	str_digit(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

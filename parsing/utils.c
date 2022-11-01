@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:07:26 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/27 07:02:32 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:27:11 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_parse	*init_vals(t_parse *p)
 {
-	p->NO = 0;
-	p->SO = 0;
-	p->WE = 0;
-	p->EA = 0;
+	p->no = 0;
+	p->so = 0;
+	p->we = 0;
+	p->ea = 0;
 	p->floor = 0;
 	p->ceil = 0;
 	p->inv_line = 0;
@@ -31,20 +31,19 @@ t_parse	*init_vals(t_parse *p)
 	return (p);
 }
 
-int check_file(char *file)
+int	check_file(char *file)
 {
-    char *str;
-    int fd;
+	char	*str;
+	int		fd;
 
-    fd = open(file, O_RDONLY);
-    if (fd == -1)
-        return (-1);
-    str = strrchr(file, '.');
-    if (str == NULL || strcmp(str, ".cub") != 0 || !strcmp(file, ".cub")) 
-        return (-1);
-    return (fd);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	str = strrchr(file, '.');
+	if (str == NULL || strcmp(str, ".cub") != 0 || !strcmp(file, ".cub"))
+		return (-1);
+	return (fd);
 }
-
 
 int	is_map(char *s)
 {
@@ -79,7 +78,7 @@ int	check_space(char *str)
 
 	i = 0;
 	while (is_blank(str[i]))
-			i++;
+		i++;
 	while (str && is_digit(str[i]))
 		i++;
 	while (is_blank(str[i]))

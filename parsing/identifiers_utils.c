@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/29 12:19:53 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:36:25 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ int	check_textures(char *str, int i)
 {
 	int		fd;
 	int		len;
-	char 	*file;
+	char	*file;
 	char	*extension;
 
 	if (!is_blank(str[i]) && str[0] == 'W' && str[1] != ' ')
 		return (0);
-	while(str && is_blank(str[i]))
+	while (str && is_blank(str[i]))
 		i++;
 	extension = ft_strrchr(str + i, '.');
 	if (extension == NULL || !ft_strncmp(str + i, ".xpm", 4)
 		|| ft_strncmp(extension, ".xpm", 4) != 0)
-		return (-1);	
+		return (-1);
 	len = get_len(str + i);
 	file = ft_substr(str + i, 0, len);
-	fd = open(file , O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
 		free(file);
@@ -80,9 +80,9 @@ int	check_range(char **tab)
 	if (!check_space(tab[0]) || !check_space(tab[1])
 		|| !check_space(tab[2]))
 		return (0);
-	if (ft_atoi(tab[0]) > 255 || ft_atoi(tab[0]) < 0 
-	|| ft_atoi(tab[1]) > 255 || ft_atoi(tab[1]) < 0
-	||	ft_atoi(tab[2]) > 255 || ft_atoi(tab[2]) < 0)
+	if (ft_atoi(tab[0]) > 255 || ft_atoi(tab[0]) < 0
+		|| ft_atoi(tab[1]) > 255 || ft_atoi(tab[1]) < 0
+		|| ft_atoi(tab[2]) > 255 || ft_atoi(tab[2]) < 0)
 		return (0);
 	return (1);
 }
@@ -92,7 +92,7 @@ int	check_colors(char *str, int i)
 	char	**s;
 
 	if (is_blank(str[i]))
-		while(is_blank(str[i]))
+		while (is_blank(str[i]))
 			i++;
 	s = ft_split(str + i, ',');
 	while (is_digit(str[i]) || is_blank(str[i]))

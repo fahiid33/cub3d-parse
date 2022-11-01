@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 22:11:15 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/21 23:15:47 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:44:17 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s, char const *s1);

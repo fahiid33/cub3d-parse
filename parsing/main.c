@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/28 20:14:33 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/01 22:26:14 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	to_parse(char **tab)
 {
-	t_parse *parse;
+	t_parse	*parse;
 	char	**identifiers;
 	char	**map;
 
@@ -34,7 +34,7 @@ int	to_parse(char **tab)
 		return (1);
 	}
 	free(parse);
-	return 0;
+	return (0);
 }
 
 char	**init_file(char *file, int fd)
@@ -46,7 +46,7 @@ char	**init_file(char *file, int fd)
 
 	i = 0;
 	fd = check_file(file);
-    if (fd == -1)
+	if (fd == -1)
 		errors(1);
 	tab = malloc(sizeof(char *) * 100);
 	while (1)
@@ -54,7 +54,7 @@ char	**init_file(char *file, int fd)
 		line = get_next_line(fd);
 		len = ft_int_strchr(line, '\n');
 		if (line == NULL || len == -1)
-			break;
+			break ;
 		tab[i] = ft_strndup(line, len);
 		free(line);
 		i++;
@@ -64,9 +64,9 @@ char	**init_file(char *file, int fd)
 	return (tab);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    char	**tab;
+	char	**tab;
 	int		fd;
 
 	fd = 0;
@@ -79,5 +79,5 @@ int main(int ac, char **av)
 		return (0);
 	}
 	fill_infos(tab);
-	return 0;
+	return (0);
 }
