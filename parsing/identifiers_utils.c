@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:44:06 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/01 22:36:25 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/02 19:03:15 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_textures(char *str, int i)
 	char	*file;
 	char	*extension;
 
-	if (!is_blank(str[i]) && str[0] == 'W' && str[1] != ' ')
+	if (!is_blank(str[i]))
 		return (0);
 	while (str && is_blank(str[i]))
 		i++;

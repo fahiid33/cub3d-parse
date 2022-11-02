@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/10/31 22:05:30 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/02 19:35:37 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <ctype.h>
-# include <mlx.h>
+// # include <mlx.h>
 
 typedef struct s_parse
 {
@@ -49,13 +49,9 @@ typedef struct s_infos
 	int		y;
 	int		ceil;
 	int		floor;
-	void	*win;
-	void	*img;
-	void	*mlx;
-	void	*img_add;
-	int		*bpp;
-	int		*size;
-	int		*end;
+	char    dir;
+    int     map_x;
+    int     map_y;
 	char	**map;
 	char	*no;
 	char	*so;
@@ -82,6 +78,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strndup(char *str, unsigned int n);
 int		ft_int_strchr(const char *s, int c);
 int		map_len(char **map);
+int	    is_player(char p);
 
 // parse
 

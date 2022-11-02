@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:01 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/01 23:05:13 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:04:04 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,13 @@ t_parse	*final_check(char **rest, t_parse *p, int pos)
 	return (p);
 }
 
+int	is_player(char p)
+{
+	if (p == 'N' || p == 'S' || p == 'E' || p == 'W')
+		return (1);
+	return (0);
+}
+
 int	internal_check(char **map)
 {
 	int	i;
@@ -91,10 +98,10 @@ int	internal_check(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (i > 0 && map[i][j] == '0' && (map[i][j + 1] == ' '
+			if (i > 0 && (map[i][j] == '0' || is_player(map[i][j])) && (map[i][j + 1] == ' '
 				|| map[i][j - 1] == ' '))
 				return (0);
-			else if (i > 0 && is_map(map[i + 1]) && map[i][j] == '0'
+			else if (i > 0 && is_map(map[i + 1]) && (map[i][j] == '0' || is_player(map[i][j]))
 				&& (map[i - 1][j] == ' ' || map[i + 1][j] == ' '
 				|| map[i - 1][j] == '\0' || map[i + 1][j] == '\0'))
 				return (0);

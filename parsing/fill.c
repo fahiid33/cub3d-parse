@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:01:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/01 22:33:15 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/02 19:39:21 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,55 @@ int	get_color(char *str)
 	return (color);
 }
 
-// void	print_struct(t_info *info)
-// {
-// 	printf("no: %s\n", info->no);
-// 	printf("so: %s\n", info->so);
-// 	printf("we: %s\n", info->we);
-// 	printf("ea: %s\n", info->ea);
-// 	printf("F: %d\n", info->floor);
-// 	printf("C: %d\n", info->ceil);
-// 	printf("x = %d | y = %d\n", info->x, info->y);
-// 	for (int k = 0; info->map[k]; k++)
-// 		printf("map[%d] = %s\n", k, info->map[k]);
-// }
+void	print_struct(t_info *info)
+{
+	printf("no: %s\n", info->no);
+	printf("so: %s\n", info->so);
+	printf("we: %s\n", info->we);
+	printf("ea: %s\n", info->ea);
+	printf("F: %d\n", info->floor);
+	printf("C: %d\n", info->ceil);
+	printf("x = %d | y = %d\n", info->x, info->y);
+	printf("map_x = %d | map_y = %d\n", info->map_x, info->map_y);
+	printf("map_p = %c\n", info->dir);
+	for (int k = 0; info->map[k]; k++)
+		printf("map[%d] = %s\n", k, info->map[k]);
+}
+
+int	map_y(char **map)
+{
+	int		i;
+	size_t	y;
+
+	i = 0;
+	y = 0;
+	while (map[i])
+	{
+		if (y < strlen(map[i]))
+			y = strlen(map[i]);
+		i++;
+	}
+	return (y);
+}
+char	get_player(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (is_player(map[i][j]))
+				return (map[i][j]);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 t_info	*fill_more_infos(char **tab, t_info *info)
 {
@@ -73,13 +110,11 @@ t_info	*fill_more_infos(char **tab, t_info *info)
 	pos = get_player_position(info->map);
 	info->x = pos[0];
 	info->y = pos[1];
+	info->map_x = map_len(info->map);
+	info->map_y = map_y(info->map);
+	info->dir = get_player(info->map);
 	free(pos);
-	info->mlx = mlx_init();
-	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "cub3D");
-	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
-	info->img_add = mlx_get_data_addr(info->img, info->bpp,
-			info->size, info->end);
-	mlx_loop(info->mlx);
+	print_struct(info);
 	return (info);
 }
 
