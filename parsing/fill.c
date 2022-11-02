@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:01:17 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 19:39:21 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:26:56 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,41 +65,6 @@ void	print_struct(t_info *info)
 	printf("map_p = %c\n", info->dir);
 	for (int k = 0; info->map[k]; k++)
 		printf("map[%d] = %s\n", k, info->map[k]);
-}
-
-int	map_y(char **map)
-{
-	int		i;
-	size_t	y;
-
-	i = 0;
-	y = 0;
-	while (map[i])
-	{
-		if (y < strlen(map[i]))
-			y = strlen(map[i]);
-		i++;
-	}
-	return (y);
-}
-char	get_player(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (is_player(map[i][j]))
-				return (map[i][j]);
-			j++;
-		}
-		i++;
-	}
-	return (0);
 }
 
 t_info	*fill_more_infos(char **tab, t_info *info)

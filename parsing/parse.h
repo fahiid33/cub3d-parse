@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 19:35:37 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:29:05 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ char	*ft_strndup(char *str, unsigned int n);
 int		ft_int_strchr(const char *s, int c);
 int		map_len(char **map);
 int	    is_player(char p);
+int	    internal_check(char **map);
+char	get_player(char **map);
+int	    map_y(char **map);
 
 // parse
 

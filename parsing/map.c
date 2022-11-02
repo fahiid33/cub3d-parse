@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 05:48:01 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 20:04:04 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:27:56 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,38 +78,6 @@ t_parse	*final_check(char **rest, t_parse *p, int pos)
 		i++;
 	}
 	return (p);
-}
-
-int	is_player(char p)
-{
-	if (p == 'N' || p == 'S' || p == 'E' || p == 'W')
-		return (1);
-	return (0);
-}
-
-int	internal_check(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map && map[i] && is_map(map[i]))
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (i > 0 && (map[i][j] == '0' || is_player(map[i][j])) && (map[i][j + 1] == ' '
-				|| map[i][j - 1] == ' '))
-				return (0);
-			else if (i > 0 && is_map(map[i + 1]) && (map[i][j] == '0' || is_player(map[i][j]))
-				&& (map[i - 1][j] == ' ' || map[i + 1][j] == ' '
-				|| map[i - 1][j] == '\0' || map[i + 1][j] == '\0'))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
 }
 
 t_parse	*m_check(char **map, t_parse *p)
