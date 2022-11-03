@@ -6,7 +6,7 @@
 /*   By: fstitou <fstitou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 23:06:47 by fstitou           #+#    #+#             */
-/*   Updated: 2022/11/02 20:29:05 by fstitou          ###   ########.fr       */
+/*   Updated: 2022/11/03 01:14:18 by fstitou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_infos
     int     map_x;
     int     map_y;
 	char	**map;
+	char	**new_map;
 	char	*no;
 	char	*so;
 	char	*we;
