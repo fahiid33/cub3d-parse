@@ -1,3 +1,9 @@
 sbr azbi njrb wahd lqlwa
 
 console.log("missi");
+
+const zbi = che3ra.addEventListener("zbi", () => {
+  if (zbi === null) {
+    zbi.innerHTML = <h1>ZBI</h1>;
+  };
+};
