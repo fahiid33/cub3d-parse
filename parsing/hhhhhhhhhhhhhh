@@ -1,0 +1,13 @@
+sbr azbi njrb wahd lqlwa
+
+console.log("missi");
+
+let zbi = null;
+
+const che3ra = document.querySelector(".7jri");
+
+che3ra.addEventListener("zbi", () => {
+  if (zbi === null) {
+    zbi.innerHTML = <h1>ZBI</h1>;
+  };
+};
